@@ -1,0 +1,61 @@
+﻿@page "/patients"
+@inject IPatientService  PatientService
+@inject NavigationManager NavigationManager
+
+<h3>Patients</h3>
+
+@if (patients.Count == 0)
+{
+<span> Loading Patients....</span>
+}
+else
+{
+	<table class ="table" >
+		<thead>
+			<tr>
+				<th>ID</th>
+				<th>First Name</th>
+				<th>Last Name</th>
+				<th>Gender</th>
+				<th>Age</th>
+				<th>Height</th>
+				<th>Weight</th>
+				<th></th>
+			</tr>
+		</thead>
+		<tbody>
+			@foreach (var p in patients)
+			{
+				<tr>
+					<td>@p.ID</td>
+					<td>@p.FirstName</td>
+					<td>@p.LastName</td>
+					<td>@p.Gender</td>
+					<td>@p.Age</td>
+					<td>@p.Height</td>
+					<td>@p.Weight</td>
+					<td>
+						<button class = "btn-primery" @onclick= "(() => DisplayPatient(p.ID))">Display</button>
+					</td>
+				</tr>
+			}
+		</tbody>
+	</table>
+}
+
+@code 
+{
+	List<Patient> patients = new List<Patient>();
+
+	protected override async Task OnInitializedAsync()
+	{
+		patients = await PatientService.GetPatients();
+	}
+
+
+	// method desplying single patient details
+	 void DisplayPatient(int id)
+	{
+		NavigationManager.NavigateTo($"patient/{id}");
+	}
+}

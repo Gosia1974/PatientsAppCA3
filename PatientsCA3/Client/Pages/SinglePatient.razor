@@ -1,0 +1,32 @@
+﻿@page "/patient/{id:int}"
+@inject IPatientService PatientService
+
+<h3>SinglePatient</h3>
+
+@if (singlepatient == null)
+{
+	<span>Patient is loading...</span>
+}
+else
+{
+	<h4>Here please see the detailes of patient:</h4> 
+	<h4>Name @singlepatient.FirstName @singlepatient.LastName</h4>
+	<h4>Age @singlepatient.Age</h4>
+	<h4>Gender @singlepatient.Gender</h4>
+	<h4>Height @singlepatient.Height</h4>
+	<h4>Weight @singlepatient.Weight</h4>
+}   
+
+
+@code {
+	[Parameter]
+	public int ID { get; set; } //property 
+	PatientsCA3.Shared.Patient singlepatient = new PatientsCA3.Shared.Patient(); // single patient obj
+
+
+	protected override async Task OnInitializedAsync()
+	{
+		Console.WriteLine("The id is: " + ID);
+		singlepatient = await PatientService.GetSinglePatient(ID);
+	}
+}
