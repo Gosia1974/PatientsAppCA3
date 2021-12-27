@@ -7,6 +7,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
 using Microsoft.Extensions.Hosting;
 using System.Linq;
+using PatientsCA3.Server.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace PatientsCA3.Server
 {
@@ -23,6 +25,7 @@ namespace PatientsCA3.Server
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services) // collection of methods, it can be injected later
         {
+            services.AddDbContext<PatientContextDB>(options => options.UseInMemoryDatabase("Patients")); //database name
 
             services.AddControllersWithViews();
             services.AddRazorPages();
