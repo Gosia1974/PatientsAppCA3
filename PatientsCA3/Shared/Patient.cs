@@ -6,8 +6,11 @@ using System.Threading.Tasks;
 
 namespace PatientsCA3.Shared
 {
-    //business model of application data/dll library
     public enum Gender { Male, Female }
+
+    /// <summary>
+    /// business model of application data/dll library
+    /// </summary>
     public class Patient
     {
         public int ID { get; set; }

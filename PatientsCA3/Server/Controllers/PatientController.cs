@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using PatientsCA3.Server.Repository;
 using PatientsCA3.Shared;
 using System;
 using System.Collections.Generic;
@@ -8,26 +9,23 @@ using System.Threading.Tasks;
 
 namespace PatientsCA3.Server.Controllers
 {
-    [Route("api/[controller]")]
+    //[Produces("aplication/json")] // produce JSON response only //that is my API, which will talk to DB(physical or inmemory)
+    [Route("api/[controller]")] // route to the app, controller is placeholder,which will be replaced with name(stock) of the controler in URL
     [ApiController]
     public class PatientController : ControllerBase
     {
-        List<Patient> patients = new List<Patient>
+        IPatientDB patientdb;
+        public PatientController()
         {
-            new Patient {ID = 1, FirstName = "Dara", LastName ="Smith", Gender = Gender.Male, Age = 55, Height = 180, Weight = 88},
-            new Patient {ID = 2, FirstName = "Peter", LastName ="Carr", Gender = Gender.Male, Age = 46, Height = 170, Weight = 95},
-            new Patient {ID = 3, FirstName = "Maria", LastName ="White", Gender = Gender.Female, Age = 57, Height = 171, Weight = 82},
-            new Patient {ID = 4, FirstName = "Erick", LastName ="Galang", Gender = Gender.Male, Age = 49, Height = 162, Weight = 70},
-            new Patient {ID = 5, FirstName = "Barbara", LastName ="Rodak", Gender = Gender.Female, Age = 75, Height = 155, Weight = 67},
-            new Patient {ID = 6, FirstName = "Magda", LastName ="MacDonnel", Gender = Gender.Female, Age = 35, Height = 160, Weight = 65}
-        };
+            patientdb = new MockPatientDB();
+        }
 
-        // controller method returnig all patients from list in mock db
+        // API/<PatientController>controller method returnig all patients from list in mock db, swagger is looking through controllers and its methods(endpoints of api)
 
-        [HttpGet] // atribute for constructor to know what call to use
+        [HttpGet] // atribute for constructor to know what call to use / trigger by Get/allowing only read data
         public async Task<IActionResult> GetPatients()
         {
-            return Ok(patients);
+            return Ok(patientdb.GetPatients());
         }
 
 
@@ -35,7 +33,7 @@ namespace PatientsCA3.Server.Controllers
         [HttpGet("{id}")] // parameter provided for routing
         public async Task<IActionResult> GeSinglePatient(int id)
         {
-            Patient patient = patients.FirstOrDefault(p => p.ID == id);
+            Patient patient = patientdb.GetPatients().FirstOrDefault(p => p.ID == id);
             if (patient == null)
             {
                 return NotFound("Patient matching this id not found.");

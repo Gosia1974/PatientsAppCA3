@@ -20,7 +20,16 @@ namespace PatientsCA3.Client.Services
 
         public async Task<List<Patient>> GetPatients()
         {
-            return await httpClient.GetFromJsonAsync<List<Patient>>("api/patient");
+            try
+            {
+                var ret = await httpClient.GetFromJsonAsync<List<Patient>>("api/patient");
+                return ret;
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
         }
 
         public async Task<Patient> GetSinglePatient(int id) // implementtion of method from interface IPatientService

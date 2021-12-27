@@ -22,6 +22,7 @@ namespace PatientsCA3.Client
 
             builder.Services.AddScoped<IPatientService, PatientService>();
 
+
             await builder.Build().RunAsync();
         }
     }
