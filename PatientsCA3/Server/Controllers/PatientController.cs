@@ -31,7 +31,7 @@ namespace PatientsCA3.Server.Controllers
 
         //controller method returning single patient from list in mock db basing on id
         [HttpGet("{id}")] // parameter provided for routing
-        public async Task<IActionResult> GeSinglePatient(int id)
+        public async Task<IActionResult> GetSinglePatient(int id)
         {
             Patient patient = patientdb.GetPatients().FirstOrDefault(p => p.ID == id);
             if (patient == null)
