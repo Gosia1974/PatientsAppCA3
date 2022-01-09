@@ -3,8 +3,13 @@ using System.Collections.Generic;
 
 namespace PatientsCA3.Server.Repository
 {
+    ///<summary>
+    ///PatientDB interface with two methods
+    ///</summary>
     public interface IPatientDB
     {
         IEnumerable<Patient> GetPatients();
+
+        public void Add(Patient patientToCreate);
     }
 }

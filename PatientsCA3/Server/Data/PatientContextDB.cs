@@ -11,11 +11,11 @@ namespace PatientsCA3.Server.Data
 /// </summary>
     public class PatientContextDB : DbContext
     {
-        //collection of patients declred to represent rows in db, using DBSet
+        //collection of patients declered to represent rows in db, using DBSet
         public DbSet<Patient> Patients { get; set; }
 
 
-        // constructor, we pass options parameter of patientcontextdb type into DBContext class base
+        // constructor with options parameter of patientcontextdb type passed into DBContext base class
         //the options is set as UseInMemoryDB, so we can use the memory for our db
         public PatientContextDB(DbContextOptions<PatientContextDB> options)
             : base(options)
@@ -23,3 +23,4 @@ namespace PatientsCA3.Server.Data
         }
     }
 }
+

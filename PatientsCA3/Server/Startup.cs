@@ -9,6 +9,7 @@ using Microsoft.Extensions.Hosting;
 using System.Linq;
 using PatientsCA3.Server.Data;
 using Microsoft.EntityFrameworkCore;
+using Blazor.Extensions.Logging;
 
 namespace PatientsCA3.Server
 {
@@ -29,9 +30,14 @@ namespace PatientsCA3.Server
 
             services.AddControllersWithViews();
             services.AddRazorPages();
-            //services.AddCors(o => o.AddPolicy("MyCORSpolicy", builder => { builder.AllowAnyOrigin();})); // Add CORS, automatically suports core
+            //services.AddLogging(builder => builder.AddBrowserConsole());
+            
+
+            // Add CORS, automatically suports core, external host can interact with my backend, anywhere on public internet
+            services.AddCors(o => o.AddPolicy("MyCORSpolicy", builder => { builder.AllowAnyOrigin();})); 
             services.AddSwaggerGen(soptions => { soptions.SwaggerDoc("v1", new OpenApiInfo { Title = "Patient Information", Version = "v1"}); }); // metadata - open api
         }
+
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -61,7 +67,7 @@ namespace PatientsCA3.Server
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
-
+            
             app.UseHttpsRedirection();
             app.UseBlazorFrameworkFiles();
             app.UseStaticFiles();

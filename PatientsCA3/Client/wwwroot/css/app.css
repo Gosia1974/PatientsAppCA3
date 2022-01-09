@@ -1,9 +1,19 @@
 ﻿@import url('open-iconic/font/css/open-iconic-bootstrap.min.css');
 
-html, body {
+/html, body {
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
+body {
+    overflow-x:hidden;
+    background-image: url('../images/pattern.png');
+    background-repeat;
+    font-family: 'Ubuntu', sans-serif;
+}
+nav {
+    background-color: #693838;
+    border-color: #140a0a
+}
 a, .btn-link {
     color: #0366d6;
 }
@@ -11,7 +21,7 @@ a, .btn-link {
 .btn-primary {
     color: #fff;
     background-color: #1b6ec2;
-    border-color: #1861ac;
+    border-color: #26b050;
 }
 
 .content {

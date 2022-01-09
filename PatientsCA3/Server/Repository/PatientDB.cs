@@ -11,6 +11,11 @@ namespace PatientsCA3.Server.Repository
     /// </summary>
     public class PatientDB : IPatientDB 
     {
+        public void Add(Patient patientToCreate)
+        {
+            throw new NotImplementedException();
+        }
+
         public IEnumerable<Patient> GetPatients()
         {
             return new List<Patient>();
