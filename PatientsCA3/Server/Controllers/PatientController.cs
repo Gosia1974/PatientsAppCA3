@@ -16,13 +16,13 @@ namespace PatientsCA3.Server.Controllers
     [ApiController]
     public class PatientController : ControllerBase
     {
-        public IPatientDB patientdb;
         private readonly ILogger _logger;
+        private readonly IPatientDBRepository patientdb;
 
-        public PatientController(ILogger<PatientController> logger)
+        public PatientController(ILogger<PatientController> logger, IPatientDBRepository patientDBrepo)
         {
-            patientdb = new MockPatientDB();
             _logger = logger;
+            patientdb = patientDBrepo;
         }
 
         // API/<PatientController>controller method returnig all patients from list in mock db, swagger is looking through controllers and its methods(endpoints of api)

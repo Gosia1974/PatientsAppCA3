@@ -6,7 +6,7 @@ namespace PatientsCA3.Server.Repository
     ///<summary>
     ///PatientDB interface with two methods
     ///</summary>
-    public interface IPatientDB
+    public interface IPatientDBRepository
     {
         IEnumerable<Patient> GetPatients();
 

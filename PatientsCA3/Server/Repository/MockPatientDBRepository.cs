@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PatientsCA3.Server.Repository
 {
-    public class MockPatientDB : IPatientDB
+    public class MockPatientDBRepository : IPatientDBRepository
     {
         // in memory collection hard coded data, store in mock db and initialise the list collection, will be replace by real db
         List<Patient> lst = new List<Patient> 

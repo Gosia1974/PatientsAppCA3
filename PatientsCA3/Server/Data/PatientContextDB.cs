@@ -11,7 +11,7 @@ namespace PatientsCA3.Server.Data
 /// </summary>
     public class PatientContextDB : DbContext
     {
-        //collection of patients declered to represent rows in db, using DBSet
+        //collection of patients declared to represent rows in db, using DBSet
         public DbSet<Patient> Patients { get; set; }
 
 
